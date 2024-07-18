@@ -7,7 +7,7 @@ import { loadStripe } from '@stripe/stripe-js'; // Add this import
 
 const stripePromise = loadStripe('pk_test_51OU7K2GzmgnXQM1ZzsvV9RUUBFbRKzol5julcMWC8zV8ckijoKAHbr1kBB2cwqbJuKN4kkxdomxe1fhpbNjkLDNm00DHUrBE3P');
 
-const paymentForm = () => {
+const PaymentForm  = () => {
   const stripe = useStripe();
   const elements = useElements();
   const router = useRouter();
@@ -259,4 +259,4 @@ const styles = {
       fontSize: '14px',
     },
   };
-  export default paymentForm
+  export default PaymentForm 
