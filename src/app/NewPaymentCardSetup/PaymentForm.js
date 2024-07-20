@@ -6,6 +6,8 @@ import axios from 'axios';
 import * as Yup from 'yup';
  import { useRouter } from 'next/navigation'; // Import useRouter from next/router
 import { loadStripe } from '@stripe/stripe-js'; // Add this import
+import { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 
 const stripePromise = loadStripe('pk_test_51OU7K2GzmgnXQM1ZzsvV9RUUBFbRKzol5julcMWC8zV8ckijoKAHbr1kBB2cwqbJuKN4kkxdomxe1fhpbNjkLDNm00DHUrBE3P');
 
@@ -24,10 +26,13 @@ const PaymentForm  = () => {
     postalCode: '',
     country: '',
     phone: '',
-    amount: '', 
+    // amount: '', 
 
   });
-
+  const { cartItems } = useSelector((state) => state.cartReducer);
+  const totalPrice = useMemo(() => {
+    return cartItems?.reduce((acc, item) => acc + parseFloat(item?.price || 0), 0).toFixed(2);
+  }, [cartItems]);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -70,10 +75,10 @@ const PaymentForm  = () => {
         throw new Error(error.message);
       }
 
-      // Send payment method to backendhttps://ottomonapis.vercel.app/payment
-      const response = await axios.post(`https://ottomonapis.vercel.app/payment`, {
+      // Send payment method to backendhttps://ottomonukbackup1.vercel.app/payment
+      const response = await axios.post(`https://ottomonukbackup1.vercel.app/checkout`, {
         paymentMethodId: paymentMethod.id,
-        amount: formData.amount, // Convert amount to cents
+        amount: totalPrice, // Convert amount to cents
         currency: 'usd', // specify the currency
         billingDetails: formData,
         email: formData.email,
@@ -179,7 +184,7 @@ const PaymentForm  = () => {
             </div>
           </div>
           <div style={styles.formGroup}>
-  <div style={styles.inputGroup}>
+  {/* <div style={styles.inputGroup}>
     <label htmlFor="amount" style={styles.formLabel}>Amount</label>
     <input
       type="number"
@@ -191,7 +196,7 @@ const PaymentForm  = () => {
       onChange={handleChange}   
          style={styles.formControl}
     />
-  </div>
+  </div> */}
 </div>
 
           <div style={styles.formGroup}>

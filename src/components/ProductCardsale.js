@@ -49,7 +49,7 @@ const ProductCardsale = ({ name, price, image, hoverImage, discount, size, categ
         setLoading(true)
       const fetchMattresses = async () => {
         try {
-          const response = await axios.get("https://ottomonapis.vercel.app/sales");
+          const response = await axios.get("https://ottomonukbackup1.vercel.app/sales");
           console.log("API Response:___", response.data);
           setLoading(false)
           const filters = {

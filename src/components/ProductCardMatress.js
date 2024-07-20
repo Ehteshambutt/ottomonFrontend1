@@ -23,7 +23,7 @@ const ProductCardMatress = ({ item, selectedGrid, pageType, CallingFrom }) => {
     setLoading(true);
     const fetchMattresses = async () => {
       try {
-        const response = await axios.get("https://ottomonapis.vercel.app/mattresses");
+        const response = await axios.get("https://ottomonukbackup1.vercel.app/mattresses");
         setLoading(false);
 
         const filters = {

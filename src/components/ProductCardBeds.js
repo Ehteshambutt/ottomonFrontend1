@@ -42,7 +42,7 @@ const ProductCardBeds = ({ name, price, image, hoverImage, discount, size, categ
         setLoading(true)
         const fetchMattresses = async () => {
           try {
-            const response = await axios.get("https://ottomonapis.vercel.app/beds");
+            const response = await axios.get("https://ottomonukbackup1.vercel.app/beds");
             console.log("API Response:___", response.data);
             setLoading(false)
             const filters = {
@@ -148,7 +148,7 @@ const ProductCardBeds = ({ name, price, image, hoverImage, discount, size, categ
                     <button className="add-to-cart m-2 btn btn-default bg-primary text-white"
                       style={{ cursor: 'pointer' }}
                       onClick={() => {
-                        dispatch(addToCart(item.id));
+                        dispatch(addToCart(item));
                       }}
                       type="button">add to cart</button>
                   </div>
@@ -210,7 +210,7 @@ const ProductCardBeds = ({ name, price, image, hoverImage, discount, size, categ
   
                 <button className="add-to-cart bg-primary text-white btn btn-default"
                   onClick={() => {
-                    dispatch(addToCart(item.id));
+                    dispatch(addToCart(item));
                   }}
                   type="button">add to cart</button>
               </div>
