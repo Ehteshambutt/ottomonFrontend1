@@ -145,12 +145,12 @@ const ProductCardsale = ({ name, price, image, hoverImage, discount, size, categ
                       </del>
                       <p className="text-sm cursor-auto text-red-600">{item.price}</p>
                     </>
-                    <button className="add-to-cart bg-primary text-white m-2 btn btn-default"
+                    {/* <button className="add-to-cart bg-primary text-white m-2 btn btn-default"
                       style={{ cursor: 'pointer' }}
                       onClick={() => {
                         dispatch(addToCart(item.id));
                       }}
-                      type="button">add to cart</button>
+                      type="button">add to cart</button> */}
                   </div>
   
                 </div>
@@ -214,11 +214,11 @@ const ProductCardsale = ({ name, price, image, hoverImage, discount, size, categ
   
                 </div>
   
-                <button className="add-to-cart bg-primary text-white btn btn-default"
+                {/* <button className="add-to-cart bg-primary text-white btn btn-default"
                   onClick={() => {
                     dispatch(addToCart(item.id));
                   }}
-                  type="button">add to cart</button>
+                  type="button">add to cart</button> */}
               </div>
             </div>
           )

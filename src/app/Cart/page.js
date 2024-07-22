@@ -10,7 +10,7 @@ const CartPage = () => {
   const handleClearCart = () => {
     dispatch(clearCart());
   };
-
+console.log(cartItems,'cartItems____')
   // Calculate total price
   const totalPrice = useMemo(() => {
     return cartItems?.reduce((acc, item) => acc + parseFloat(item?.price || 0), 0).toFixed(2);

@@ -6,6 +6,7 @@ import Image from "next/image";
 import SlipLids from "../../../components/cards/SlipLids";
 import ColorPalette from "../../../components/cards/ColorPalette";
 import "../../../css/styles.css";
+import RightSidebar from '../../../components/RightSidebar/RightSidebar';
 import { useRouter } from 'next/navigation';
 import ProductbaseDropdown from "../../../components/ProductbaseDropdown";
 // import DetailsMobile from "../../../components/cards/_components/details_mobile";
@@ -20,7 +21,12 @@ const Products = ({params}) => {
   const router = useRouter();
   console.log(params.slug,'_________1'); 
  
-  
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    console.log("hlo toggle sidebar are u there ")
+    setIsSidebarOpen(!isSidebarOpen);
+  };
  
 
   
@@ -45,6 +51,8 @@ const Products = ({params}) => {
 
   const [inStock, setinStock] = useState(""); // Initial amount value
   const [PId, setPId] = useState(""); // Initial amount value
+  const [PId1, setPId1] = useState(""); // Initial amount value
+
   const [imageUrl, setimageUrl] = useState(""); // Initial amount value
 
   const displayDepthOptions = () => {
@@ -324,7 +332,7 @@ setPId(parts[1])
           setdescription(response.data.mattresses.description); // Set the fetched price
           setinStock(response.data.mattresses.countInStock); // Set the fetched price
           setimageUrl(response.data.mattresses.imageUrl); // Set the fetched price
-
+          setPId1(response.data.mattresses)
         } catch (error) {
           console.error('Error fetching data:', error);
         } finally {
@@ -1006,10 +1014,10 @@ setPId(parts[1])
                       className={`bg-[#00acbb] w-[30%] hover:bg-[#00666e] text-sm text-white font-bold py-[0.6rem] px-8 rounded-2xl max-sm:py-[0.3rem] ${
                         shake ? "animate__animated animate__shakeX" : ""
                       }`}
-                      onClick={() => 
-                           dispatch(addToCart(PId))}
-                       
-                    >
+                      onClick={() => {
+                        dispatch(addToCart(PId1));
+                        toggleSidebar();
+                      }}> 
                       Add to Cart
                     </button>
                     <svg
@@ -1184,8 +1192,10 @@ setPId(parts[1])
                         className={`bg-[#00acbb] w-[60%] h-12 hover:bg-[#00666e] text-sm text-white font-bold py-[0.5rem] px-5 rounded-2xl max-sm:py-[0.3rem] ${
                           shake ? "animate__animated animate__shakeX" : ""
                         }`}
-                        onClick={() => 
-                          dispatch(addToCart(PId))}                      >
+                        onClick={() => {
+                          dispatch(addToCart(PId1));
+                          toggleSidebar();
+                        }}> 
                         Add to Cart
                       </button>
                     </div>
@@ -1200,7 +1210,7 @@ setPId(parts[1])
       </div>
 
       {/* Details Mobile */}
-      
+      <RightSidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
       {/* <DetailsMobile /> */}
     </div>
   );
